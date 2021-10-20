@@ -1,10 +1,25 @@
+import 'package:e_now_music/src/startScreens/loginPage.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class SplashScreenMain extends StatefulWidget {
+  const SplashScreenMain({Key? key}) : super(key: key);
+
+  @override
+  _SplashScreenMainState createState() => _SplashScreenMainState();
+}
+
+class _SplashScreenMainState extends State<SplashScreenMain> {
+  @override
+  void initState() {
+    Future.delayed(Duration(seconds: 3), () {
+      route();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
     return Scaffold(
       body: Stack(
         children: [
@@ -22,10 +37,7 @@ class SplashScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 25.0),
                   child: Text(
                     'eNow',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 64.0,
-                        fontWeight: FontWeight.w700),
+                    style: theme.headline1!.copyWith(color: Colors.white),
                   ),
                 ),
               ],
@@ -38,12 +50,21 @@ class SplashScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    '2020 - 2021 Clique Inc',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w500),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/copyright.png'),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 6.0),
+                        child: Text(
+                          '2020 - 2021 Clique Inc',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 20.0,
@@ -63,7 +84,8 @@ class SplashScreen extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 12.0,
-                        fontWeight: FontWeight.normal),
+                        fontWeight: FontWeight.normal,
+                        fontFamily: 'Inter'),
                   )
                 ],
               ),
@@ -72,5 +94,10 @@ class SplashScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  route() {
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => LoginScreen()));
   }
 }
