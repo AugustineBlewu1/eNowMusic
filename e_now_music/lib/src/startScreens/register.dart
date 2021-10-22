@@ -1,20 +1,19 @@
-import 'package:e_now_music/src/otherScreens/bottomNavbar.dart';
-import 'package:e_now_music/src/startScreens/register.dart';
 import 'package:e_now_music/src/utils/customUsage.dart';
-import 'package:e_now_music/src/utils/navigators.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:e_now_music/src/utils/navigators.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final nameController = TextEditingController();
   bool _isHidden = true;
   List images = ['google.png', 'facebook-f.png', 'twitter.png'];
 
@@ -22,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     var onTapRecognizer = TapGestureRecognizer()
       ..onTap = () {
-        context.push(screen: RegisterScreen());
+        context.pop();
       };
     final theme = Theme.of(context).textTheme;
     return Scaffold(
@@ -54,11 +53,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 50.0,
+                    height: 20.0,
                   ),
                   Form(
                       child: Column(
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                        child: textFormField(
+                            fieldController: nameController,
+                            label: 'Name',
+                            hint: 'Enter your full name'),
+                      ),
+                      SizedBox(
+                        height: 30.0,
+                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 40.0),
                         child: textFormField(
@@ -88,11 +97,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             width: 110.0,
                             child: ElevatedButton(
                                 style: buttonStyle,
-                                onPressed: () {
-                                  context.push(screen: BottomNav());
-                                },
+                                onPressed: () {},
                                 child: Text(
-                                  'Login',
+                                  'Register',
                                 )),
                           ),
                         ),
@@ -130,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 60.0,
+                    height: 40.0,
                   ),
                   RichText(
                       text: TextSpan(
@@ -139,11 +146,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                         TextSpan(text: '  '),
                         TextSpan(
-                            text: 'Register',
+                            text: 'Login',
                             style:
                                 theme.caption!.copyWith(color: Colors.red[500]),
                             recognizer: onTapRecognizer)
-                      ]))
+                      ])),
+                      SizedBox(height: 25.0,)
                 ],
               )
             ],
