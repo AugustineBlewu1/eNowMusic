@@ -12,7 +12,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('Hi'),
+      body: Center(child: Text('Search Screen')),
     );
   }
 }

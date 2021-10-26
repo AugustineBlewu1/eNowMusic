@@ -1,3 +1,4 @@
+import 'package:e_now_music/src/otherScreens/paymentScreens/paymentMethod.dart';
 import 'package:e_now_music/src/utils/customUsage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +98,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             width: 110.0,
                             child: ElevatedButton(
                                 style: buttonStyle,
-                                onPressed: () {},
+                                onPressed: () {
+                                  context.push(screen: SelectPaymentMethod());
+                                },
                                 child: Text(
                                   'Register',
                                 )),
@@ -151,7 +154,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 theme.caption!.copyWith(color: Colors.red[500]),
                             recognizer: onTapRecognizer)
                       ])),
-                      SizedBox(height: 25.0,)
+                  SizedBox(
+                    height: 25.0,
+                  )
                 ],
               )
             ],

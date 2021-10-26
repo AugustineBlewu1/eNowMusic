@@ -1,6 +1,4 @@
-import 'package:e_now_music/src/startScreens/homepage.dart';
 import 'package:e_now_music/src/startScreens/spalshScreen.dart';
-import 'package:e_now_music/src/utils/customUsage.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -12,7 +10,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
           fontFamily: 'Inter',
-          primarySwatch: Colors.blue,
           textTheme: const TextTheme(
               headline1: TextStyle(
                   fontSize: 64.0,
@@ -24,7 +21,7 @@ class MyApp extends StatelessWidget {
                   fontFamily: 'Inter'),
                   headline3: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Inter',),
               headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-              bodyText2: TextStyle(fontSize: 14.0, fontFamily: ''),
+              bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Inter', fontWeight: FontWeight.w700),
               button: TextStyle(fontSize: 18.0 ,  color: Color(0XFFF32314A)),
               caption: TextStyle(fontSize: 14.0, color: Color(0XFFF32314A))),
           buttonTheme: ButtonThemeData(buttonColor: Color(0XFFF32314A))),

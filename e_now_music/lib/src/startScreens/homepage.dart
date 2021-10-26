@@ -1,4 +1,4 @@
-import 'package:e_now_music/src/models/musicModel.dart';
+import 'package:e_now_music/src/otherScreens/models/musicModel.dart';
 import 'package:e_now_music/src/utils/customUsage.dart';
 import 'package:e_now_music/src/utils/horizontalMusicList.dart';
 import 'package:flutter/material.dart';

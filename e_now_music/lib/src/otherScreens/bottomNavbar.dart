@@ -1,11 +1,12 @@
+import 'package:e_now_music/src/otherScreens/music/favouriteMusic.dart';
+import 'package:e_now_music/src/otherScreens/music/musicUpload.dart';
 import 'package:e_now_music/src/otherScreens/profileScreen.dart';
 import 'package:e_now_music/src/otherScreens/searchScreen.dart';
-import 'package:e_now_music/src/otherScreens/uploadScreen.dart';
 import 'package:e_now_music/src/startScreens/homepage.dart';
 import 'package:e_now_music/src/utils/customUsage.dart';
 import 'package:flutter/material.dart';
-import 'package:e_now_music/src/utils/navigators.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:e_now_music/src/utils/navigators.dart';
 
 class BottomNav extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class _BottomNavState extends State<BottomNav> with RouteAware {
   ];
   List<Widget> options = [
     MyHomePage(),
-    UpLoadScreen(),
+    FavouriteMusic(),
     SearchScreen(),
     ProfileScreen()
   ];
@@ -74,8 +75,13 @@ class _BottomNavState extends State<BottomNav> with RouteAware {
           child: TextButton(
             style: buttonStyle.copyWith(
                 backgroundColor: MaterialStateProperty.all(eNowColor)),
-            child: Image.asset('assets/Plus.png', fit: BoxFit.fill,),
-            onPressed: () {},
+            child: Image.asset(
+              'assets/Plus.png',
+              fit: BoxFit.fill,
+            ),
+            onPressed: () {
+              context.push(screen: MusicUpload());
+            },
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(

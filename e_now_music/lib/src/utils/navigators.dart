@@ -15,6 +15,14 @@ extension NavigateAndTheme on BuildContext {
     return Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (BuildContext context) => screen));
   }
+
+  removeUntil({required context, required Widget screen}) {
+    return Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (BuildContext context) => screen),
+        (route) => false);
+  }
+
   ThemeData get theme => Theme.of(this);
   TextTheme get textTheme => theme.textTheme;
 }
