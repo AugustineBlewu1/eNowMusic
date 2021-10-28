@@ -1,4 +1,4 @@
-import 'package:e_now_music/src/otherScreens/models/paymentModel.dart';
+import 'package:e_now_music/src/models/paymentModel.dart';
 import 'package:e_now_music/src/otherScreens/paymentScreens/paymentInfo.dart';
 import 'package:e_now_music/src/utils/customUsage.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,4 @@
 import 'package:e_now_music/src/otherScreens/bottomNavbar.dart';
-import 'package:e_now_music/src/otherScreens/music/musicPlay.dart';
-import 'package:e_now_music/src/startScreens/homepage.dart';
 import 'package:e_now_music/src/utils/customUsage.dart';
 import 'package:flutter/material.dart';
 import 'package:e_now_music/src/utils/navigators.dart';

@@ -7,6 +7,7 @@ import 'package:e_now_music/src/utils/customUsage.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:e_now_music/src/utils/navigators.dart';
+import 'package:provider/provider.dart';
 
 class BottomNav extends StatefulWidget {
   @override

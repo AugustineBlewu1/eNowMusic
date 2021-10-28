@@ -73,11 +73,12 @@ appBarPreferredwithActions(
         children: [
           Padding(
             padding: const EdgeInsets.only(right: 33.0),
-            child: IconButton
-            (
-              icon: Icon(Icons.arrow_back_outlined, color: Colors.white), onPressed: (){
-                 Navigator.of(context!).pop();
-              },),
+            child: IconButton(
+              icon: Icon(Icons.arrow_back_outlined, color: Colors.white),
+              onPressed: () {
+                Navigator.of(context!).pop();
+              },
+            ),
           ),
           Row(
             children: [
@@ -116,4 +117,11 @@ appBarPreferredwithActions(
 showSnackError(BuildContext context, {String? error}) {
   return ScaffoldMessenger.of(context)
       .showSnackBar(SnackBar(content: Text(error!)));
+}
+
+showSnackSuccess(BuildContext context, {String? message}) {
+  return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text(message!),
+    backgroundColor: Colors.green,
+  ));
 }
