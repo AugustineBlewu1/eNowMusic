@@ -1,9 +1,11 @@
 import 'package:e_now_music/src/otherScreens/bottomNavbar.dart';
+import 'package:e_now_music/src/services/firebaseAuth.dart';
 import 'package:e_now_music/src/startScreens/register.dart';
 import 'package:e_now_music/src/utils/customUsage.dart';
 import 'package:e_now_music/src/utils/navigators.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -17,6 +19,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final passwordController = TextEditingController();
   bool _isHidden = true;
   List images = ['google.png', 'facebook-f.png', 'twitter.png'];
+  bool loading = false;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +29,8 @@ class _LoginScreenState extends State<LoginScreen> {
         context.push(screen: RegisterScreen());
       };
     final theme = Theme.of(context).textTheme;
+    final userCredential =
+        Provider.of<FirebaseAuthentication>(context, listen: false);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -57,48 +63,68 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 50.0,
                   ),
                   Form(
+                      key: _formKey,
                       child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                        child: textFormField(
-                            fieldController: emailController,
-                            label: 'Email',
-                            hint: 'Enter your email'),
-                      ),
-                      SizedBox(
-                        height: 30.0,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                        child: textPasswordField(
-                            fieldController: passwordController,
-                            label: 'Password',
-                            hint: 'Enter your password'),
-                      ),
-                      SizedBox(
-                        height: 30.0,
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 40.0),
-                          child: SizedBox(
-                            height: 35.0,
-                            width: 110.0,
-                            child: ElevatedButton(
-                                style: buttonStyle,
-                                onPressed: () {
-                                  context.push(screen: BottomNav());
-                                },
-                                child: Text(
-                                  'Login',
-                                )),
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 40.0),
+                            child: textFormField(
+                                fieldController: emailController,
+                                label: 'Email',
+                                hint: 'Enter your email',
+                                value: (val) {
+                                  if (val!.isEmpty) return validateEmail(val);
+                                }),
                           ),
-                        ),
-                      )
-                    ],
-                  )),
+                          SizedBox(
+                            height: 30.0,
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 40.0),
+                            child: textPasswordField(
+                                fieldController: passwordController,
+                                label: 'Password',
+                                hint: 'Enter your password',
+                                value: (val) {
+                                  if (val!.isEmpty)
+                                    return 'Password is required';
+                                }),
+                          ),
+                          SizedBox(
+                            height: 30.0,
+                          ),
+                          loading == true
+                              ? Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 40.0),
+                                    child: SizedBox(
+                                      height: 35.0,
+                                      width: 110.0,
+                                      child: ElevatedButton(
+                                          style: buttonStyle,
+                                          onPressed: () {
+                                            context.push(screen: BottomNav());
+                                            // if (_formKey.currentState!
+                                            //     .validate()) {
+                                            //   return login(userCredential);
+                                            // } else {
+                                            //   return;
+                                            // }
+                                          },
+                                          child: Text(
+                                            'Login',
+                                          )),
+                                    ),
+                                  ),
+                                )
+                        ],
+                      )),
                   SizedBox(
                     height: 40.0,
                   ),
@@ -154,9 +180,14 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget textFormField(
-      {TextEditingController? fieldController, String? label, String? hint}) {
+      {TextEditingController? fieldController,
+      String? label,
+      String? hint,
+      String? Function(String?)? value}) {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: fieldController,
+      validator: value,
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
@@ -166,10 +197,15 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget textPasswordField(
-      {TextEditingController? fieldController, String? label, String? hint}) {
+      {TextEditingController? fieldController,
+      String? label,
+      String? hint,
+      String? Function(String?)? value}) {
     return TextFormField(
       obscureText: _isHidden,
       controller: fieldController,
+      validator: value,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
@@ -189,6 +225,24 @@ class _LoginScreenState extends State<LoginScreen> {
   _toggle() {
     setState(() {
       _isHidden = !_isHidden;
+    });
+  }
+
+  login(FirebaseAuthentication userCredential) async {
+    setState(() {
+      loading = true;
+    });
+    await userCredential
+        .login(email: emailController.text, password: passwordController.text)
+        .then((value) {
+      context.removeUntil(context: context, screen: BottomNav());
+      context.showSnackSuccess(message: 'Welcome}');
+    }).catchError((err) {
+      context.showSnackError(error: err.toString());
+    }).whenComplete(() {
+      setState(() {
+        loading = false;
+      });
     });
   }
 }

@@ -34,7 +34,7 @@ class _AudioPlayState extends State<AudioPlay> {
         .setAudioSource(AudioSource.uri(Uri.parse(audio!)))
         .catchError((error) {
       print('Error : $error');
-      showSnackError(context, error: error.toString());
+      context.showSnackError(error: error.toString());
     });
   }
 

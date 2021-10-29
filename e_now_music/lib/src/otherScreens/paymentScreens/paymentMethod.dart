@@ -1,4 +1,5 @@
 import 'package:e_now_music/src/models/paymentModel.dart';
+import 'package:e_now_music/src/otherScreens/bottomNavbar.dart';
 import 'package:e_now_music/src/otherScreens/paymentScreens/paymentInfo.dart';
 import 'package:e_now_music/src/utils/customUsage.dart';
 import 'package:flutter/material.dart';
@@ -162,7 +163,7 @@ class _SelectPaymentMethodState extends State<SelectPaymentMethod> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (radioItemvalue == null) {
-                      showSnackError(context, error: 'Select a payment method');
+                      context.showSnackError( error: 'Select a payment method');
                     } else {
                       context.push(screen: PaymentInfo());
                     }
@@ -171,6 +172,27 @@ class _SelectPaymentMethodState extends State<SelectPaymentMethod> {
                   style: buttonStyle.copyWith(
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0)))),
+                )),
+
+                SizedBox(
+                  height: 30.0,
+                ),
+                SizedBox(
+                width: 319,
+                height: 49,
+                child: OutlinedButton(
+                  onPressed: () {
+                    context.removeUntil(context: context, screen: BottomNav());
+                   
+                  },
+                  child: Text('Skip for Now', style: context.textTheme.button!.copyWith(
+                    color: eNowColor
+                  ),),
+                  style: buttonStyle.copyWith(
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),))),
                 ))
           ],
         ),

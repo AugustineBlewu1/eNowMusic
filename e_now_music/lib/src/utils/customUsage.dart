@@ -114,14 +114,14 @@ appBarPreferredwithActions(
   );
 }
 
-showSnackError(BuildContext context, {String? error}) {
-  return ScaffoldMessenger.of(context)
-      .showSnackBar(SnackBar(content: Text(error!)));
-}
 
-showSnackSuccess(BuildContext context, {String? message}) {
-  return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Text(message!),
-    backgroundColor: Colors.green,
-  ));
+
+String? validateEmail(String value) {
+  Pattern pattern =
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+  RegExp regex = new RegExp(pattern as String);
+  if (!regex.hasMatch(value.trim()))
+    return 'Enter a valid email: \neg - info@enowmusic.com';
+  else
+    return null;
 }

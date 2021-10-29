@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:e_now_music/src/services/firebaseDocument.dart';
-import 'package:e_now_music/src/utils/customUsage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,9 +11,11 @@ class FirebaseAuthentication extends ChangeNotifier {
   String? _userIdtoken;
   String? _uid;
   final logger = SimpleLogger();
+  bool _fetching = false;
 
   String? get userId => _userIdtoken;
   String? get uid => _uid;
+  bool get fetching => _fetching;
 
   Future<User?> signUpwithEmailandPassword({name, email, password}) async {
     return authenticateUser(
@@ -41,18 +42,19 @@ class FirebaseAuthentication extends ChangeNotifier {
         _uid = await user.user!.uid;
         final userData = {'token': _userIdtoken, 'uid': _uid};
         preferences.setString('userData', json.encode(userData));
-       
+
         authType == 'signUp'
             ? Document().addUser(userEmail: email, userName: name)
             : null;
         notifyListeners();
       } else {
         logger.info(user);
-        throw ErrorWidget(user);
+        throw Exception(user);
       }
     } catch (e) {
       logger.warning(e);
-      throw ErrorWidget(e.toString());
+      throw Exception(e);
     }
+    
   }
 }

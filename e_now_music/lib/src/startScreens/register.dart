@@ -18,6 +18,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final passwordController = TextEditingController();
   final nameController = TextEditingController();
   bool _isHidden = true;
+  bool loading = false;
   List images = ['google.png', 'facebook-f.png', 'twitter.png'];
 
   final _formKey = GlobalKey<FormState>();
@@ -72,7 +73,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             child: textFormField(
                                 fieldController: nameController,
                                 label: 'Name',
-                                hint: 'Enter your full name'),
+                                hint: 'Enter your full name',
+                                value: (val) {
+                                  if (val!.isEmpty)
+                                    return 'Full Name is required';
+                                }),
                           ),
                           SizedBox(
                             height: 30.0,
@@ -85,9 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 label: 'Email',
                                 hint: 'Enter your email',
                                 value: (val) {
-                                  if (val!.isEmpty)
-                                    return showSnackError(context,
-                                        error: 'isRequired');
+                                  if (val!.isEmpty) return validateEmail(val);
                                 }),
                           ),
                           SizedBox(
@@ -99,31 +102,43 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             child: textPasswordField(
                                 fieldController: passwordController,
                                 label: 'Password',
-                                hint: 'Enter your password'),
+                                hint: 'Enter your password',
+                                value: (val) {
+                                  if (val!.isEmpty) {
+                                    return 'Password is required';
+                                  }
+                                  if (val.length <= 6)
+                                    return 'Password length must have at \n least 6 Characters';
+                                }),
                           ),
                           SizedBox(
                             height: 30.0,
                           ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 40.0),
-                              child: SizedBox(
-                                height: 35.0,
-                                width: 110.0,
-                                child: ElevatedButton(
-                                    style: buttonStyle,
-                                    onPressed: () {
-                                      if (_formKey.currentState!.validate()) {
-                                        return registerUser(userCredential);
-                                      }
-                                    },
-                                    child: Text(
-                                      'Register',
-                                    )),
-                              ),
-                            ),
-                          )
+                          loading == true
+                              ? Center(child: CircularProgressIndicator())
+                              : Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 40.0),
+                                    child: SizedBox(
+                                      height: 35.0,
+                                      width: 110.0,
+                                      child: ElevatedButton(
+                                          style: buttonStyle,
+                                          onPressed: () {
+                                            _formKey.currentState?.save;
+                                            if (_formKey.currentState!
+                                                .validate()) {
+                                              return registerUser(
+                                                  userCredential);
+                                            }
+                                          },
+                                          child: Text(
+                                            'Register',
+                                          )),
+                                    ),
+                                  ),
+                                )
                         ],
                       )),
                   SizedBox(
@@ -201,10 +216,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Widget textPasswordField(
-      {TextEditingController? fieldController, String? label, String? hint}) {
+      {TextEditingController? fieldController,
+      String? label,
+      String? hint,
+      String? Function(String?)? value}) {
     return TextFormField(
       obscureText: _isHidden,
       controller: fieldController,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      validator: value,
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
@@ -228,14 +248,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   registerUser(FirebaseAuthentication userCredential) async {
-    final response = await userCredential.signUpwithEmailandPassword(
-        name: nameController.text,
-        email: emailController.text,
-        password: passwordController.text);
-
-    if (response != null) {
+    setState(() {
+      loading = true;
+    });
+    await userCredential
+        .signUpwithEmailandPassword(
+            name: nameController.text,
+            email: emailController.text,
+            password: passwordController.text)
+        .then((value) {
+      context.showSnackSuccess(message: 'Registeration Successfull');
       context.push(screen: SelectPaymentMethod());
-      showSnackSuccess(context, message: response.displayName);
-    }
+    }).catchError((err) {
+      context.showSnackError(error: err.message.toString());
+    }).whenComplete(() {
+      setState(() {
+        loading = false;
+      });
+    });
   }
 }

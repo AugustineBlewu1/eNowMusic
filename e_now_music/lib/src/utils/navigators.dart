@@ -25,4 +25,18 @@ extension NavigateAndTheme on BuildContext {
 
   ThemeData get theme => Theme.of(this);
   TextTheme get textTheme => theme.textTheme;
+
+showSnackError({String? error}) {
+  return ScaffoldMessenger.of(this)
+      .showSnackBar(SnackBar(
+        backgroundColor: Colors.red,
+        content: Text(error!)));
+}
+
+showSnackSuccess( {String? message}) {
+  return ScaffoldMessenger.of(this).showSnackBar(SnackBar(
+    content: Text(message!),
+    backgroundColor: Colors.green,
+  ));
+}
 }

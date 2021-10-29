@@ -3,9 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 class Document extends ChangeNotifier {
   CollectionReference users = FirebaseFirestore.instance.collection('users');
-
-  CollectionReference musicCollection =
-      FirebaseFirestore.instance.collection('musics');
+  CollectionReference musics = FirebaseFirestore.instance.collection('musics');
 
   Future<void> addUser({String? userEmail, String? userName}) {
     return users.add({
@@ -16,9 +14,5 @@ class Document extends ChangeNotifier {
     }).catchError((error) {
       print(error);
     });
-  }
-
-  Future<void> musics() {
-    return musicCollection.get();
   }
 }
