@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+//   await FlutterDownloader.initialize(
+//   debug: true // optional: set false to disable printing logs to console
+// );
   runApp(MyApp());
 }
-
-
-
-

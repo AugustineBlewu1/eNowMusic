@@ -6,6 +6,7 @@ import 'package:e_now_music/src/utils/navigators.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -109,13 +110,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                       child: ElevatedButton(
                                           style: buttonStyle,
                                           onPressed: () {
-                                            context.push(screen: BottomNav());
-                                            // if (_formKey.currentState!
-                                            //     .validate()) {
-                                            //   return login(userCredential);
-                                            // } else {
-                                            //   return;
-                                            // }
+                                            // context.push(screen: BottomNav());
+                                            if (_formKey.currentState!
+                                                .validate()) {
+                                              return login(userCredential);
+                                            } else {
+                                              return;
+                                            }
                                           },
                                           child: Text(
                                             'Login',
@@ -229,14 +230,18 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   login(FirebaseAuthentication userCredential) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
       loading = true;
     });
     await userCredential
-        .login(email: emailController.text, password: passwordController.text)
+        .login(
+            email: emailController.text.trim(),
+            password: passwordController.text.trim())
         .then((value) {
       context.removeUntil(context: context, screen: BottomNav());
       context.showSnackSuccess(message: 'Welcome}');
+      preferences.setBool("isLoggedIn", true);
     }).catchError((err) {
       context.showSnackError(error: err.toString());
     }).whenComplete(() {

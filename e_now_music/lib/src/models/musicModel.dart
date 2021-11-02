@@ -1,25 +1,45 @@
-
 class MusicModel {
-  int? id;
-  String? image;
+  String? id;
+  String? imageUrl;
+  String? musicUrl;
   String? title;
-  String? subtitle;
+  String? description;
+  String? role;
+  String? genre;
+  bool? isfavorite;
 
-  MusicModel(Map<String, dynamic> musicData, {this.id, this.image, this.title, this.subtitle});
+  MusicModel(Map<String, dynamic> musicData,
+      {this.id,
+      this.imageUrl,
+      this.musicUrl,
+      this.title,
+      this.description,
+      this.genre,
+      this.isfavorite,
+      this.role});
 
   MusicModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    image = json['image'];
+    imageUrl = json['imageUrl'];
     title = json['title'];
-    subtitle = json['subtitle'];
+    musicUrl = json['musicUrl'];
+    description = json['description'];
+    role = json['role'];
+    genre = json['genre'];
+    isfavorite = json['isfavorite'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['image'] = this.image;
+    data['imageUrl'] = this.imageUrl;
+    data['musicUrl'] = this.musicUrl;
     data['title'] = this.title;
-    data['subtitle'] = this.subtitle;
+    data['role'] = this.role;
+    data['genre'] = this.genre;
+    data['isfavorite'] = this.isfavorite;
+
+    data['description'] = this.description;
     return data;
   }
 }

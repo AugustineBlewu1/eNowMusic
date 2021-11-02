@@ -253,9 +253,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
     await userCredential
         .signUpwithEmailandPassword(
-            name: nameController.text,
-            email: emailController.text,
-            password: passwordController.text)
+            name: nameController.text.trim(),
+            email: emailController.text.trim(),
+            password: passwordController.text.trim())
         .then((value) {
       context.showSnackSuccess(message: 'Registeration Successfull');
       context.push(screen: SelectPaymentMethod());

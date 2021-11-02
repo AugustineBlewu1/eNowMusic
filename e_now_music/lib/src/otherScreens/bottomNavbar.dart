@@ -7,7 +7,6 @@ import 'package:e_now_music/src/utils/customUsage.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:e_now_music/src/utils/navigators.dart';
-import 'package:provider/provider.dart';
 
 class BottomNav extends StatefulWidget {
   @override
@@ -101,9 +100,9 @@ class _BottomNavState extends State<BottomNav> with RouteAware {
                 label: '',
                 activeIcon: Icon(Ionicons.heart)),
             BottomNavigationBarItem(
-                icon: Icon(Icons.search),
+                icon: Icon(Icons.message_outlined),
                 label: '',
-                activeIcon: Icon(Ionicons.search)),
+                activeIcon: Icon(Icons.message)),
             BottomNavigationBarItem(
                 icon: Icon(Icons.person_outline),
                 label: '',

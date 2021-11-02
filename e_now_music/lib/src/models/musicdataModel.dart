@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 
 class MusicData {
@@ -7,6 +5,8 @@ class MusicData {
   String? title;
   String? role;
   String? description;
+  String? genre;
+  bool? isfavorite;
   List<File?>? imageFile;
 
   MusicData(
@@ -14,6 +14,8 @@ class MusicData {
       this.title,
       this.role,
       this.description,
+      this.genre,
+      this.isfavorite,
       this.imageFile});
 
   MusicData.fromJson(Map<String, dynamic> json) {
@@ -21,7 +23,9 @@ class MusicData {
     title = json['title'];
     role = json['role'];
     description = json['description'];
-    imageFile = json['imageFile'].cast<String>();
+    genre = json['genre'];
+    isfavorite = json['isfavorite'];
+    imageFile = json['imageFile'].cast<File>();
   }
 
   Map<String, dynamic> toJson() {
@@ -30,6 +34,8 @@ class MusicData {
     data['title'] = this.title;
     data['role'] = this.role;
     data['description'] = this.description;
+    data['genre'] = this.genre;
+    data['isfavorite'] = this.isfavorite;
     data['imageFile'] = this.imageFile;
     return data;
   }

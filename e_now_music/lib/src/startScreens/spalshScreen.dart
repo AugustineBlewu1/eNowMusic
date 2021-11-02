@@ -1,5 +1,7 @@
+import 'package:e_now_music/src/otherScreens/bottomNavbar.dart';
 import 'package:e_now_music/src/startScreens/loginPage.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreenMain extends StatefulWidget {
   const SplashScreenMain({Key? key}) : super(key: key);
@@ -96,8 +98,13 @@ class _SplashScreenMainState extends State<SplashScreenMain> {
     );
   }
 
-  route() {
-    Navigator.of(context).pushReplacement(
+  route() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final prefs = preferences.getBool('isLoggedIn') ?? false;
+
+    prefs == true ? Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => BottomNav())) 
+        :  Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => LoginScreen()));
   }
 }

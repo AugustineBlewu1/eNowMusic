@@ -1,3 +1,5 @@
+
+import 'package:e_now_music/src/models/musicModel.dart';
 import 'package:e_now_music/src/otherScreens/music/seekBar.dart';
 import 'package:e_now_music/src/utils/customUsage.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +8,8 @@ import 'package:rxdart/rxdart.dart';
 import 'package:e_now_music/src/utils/navigators.dart';
 
 class AudioPlay extends StatefulWidget {
-  const AudioPlay({Key? key, this.audio}) : super(key: key);
-  final audio;
+  const AudioPlay({Key? key, this.musicModel}) : super(key: key);
+  final MusicModel? musicModel;
 
   @override
   _AudioPlayState createState() => _AudioPlayState();
@@ -31,7 +33,7 @@ class _AudioPlayState extends State<AudioPlay> {
     _audioPlayer = AudioPlayer();
 
     await _audioPlayer
-        .setAudioSource(AudioSource.uri(Uri.parse(audio!)))
+        .setAudioSource(AudioSource.uri(Uri.parse(widget.musicModel!.musicUrl.toString())))
         .catchError((error) {
       print('Error : $error');
       context.showSnackError(error: error.toString());
@@ -40,7 +42,7 @@ class _AudioPlayState extends State<AudioPlay> {
 
   @override
   Widget build(BuildContext context) {
-    return PlayButtons(_audioPlayer);
+    return PlayButtons(_audioPlayer,  musicModel: widget.musicModel,);
   }
 
   @override
@@ -54,8 +56,10 @@ class PlayButtons extends StatelessWidget {
   const PlayButtons(
     this.audio, {
     Key? key,
+    this.musicModel
   }) : super(key: key);
   final AudioPlayer audio;
+  final MusicModel? musicModel;
 
   @override
   Widget build(BuildContext context) {
@@ -108,14 +112,14 @@ class PlayButtons extends StatelessWidget {
         height: 20.0,
       ),
       Text(
-        'Sunday Morning',
+        musicModel!.title.toString(),
         style: context.textTheme.headline3,
       ),
       SizedBox(
         height: 30.0,
       ),
       Text(
-        'By kwaku Awu',
+          musicModel!.description.toString(),
         style: context.textTheme.caption!
             .copyWith(fontSize: 18.0, color: eNowColor.withOpacity(0.5)),
       ),
