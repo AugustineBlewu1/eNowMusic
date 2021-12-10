@@ -132,6 +132,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                               return registerUser(
                                                   userCredential);
                                             }
+                                            // context.push(
+                                            //     screen: SelectPaymentMethod());
                                           },
                                           child: Text(
                                             'Register',

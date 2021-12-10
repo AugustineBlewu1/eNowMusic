@@ -2,27 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2b0cf5c-dbfa-41a3-a9cb-e245197da338" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/e_now_music/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/app.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/models/musicModel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/models/musicModel.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/models/musicdataModel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/models/musicdataModel.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/otherScreens/bottomNavbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/otherScreens/bottomNavbar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/otherScreens/music/audioPlay.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/otherScreens/music/audioPlay.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/otherScreens/music/musicPlay.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/otherScreens/music/musicPlay.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/otherScreens/music/musicUpload.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/otherScreens/music/musicUpload.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/otherScreens/profileScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/otherScreens/profileScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/otherScreens/searchScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/otherScreens/searchScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/services/firebaseAuth.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/services/firebaseAuth.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/services/firebaseDocument.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/services/firebaseDocument.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/services/firebaseStorage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/services/firebaseStorage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/startScreens/homepage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/startScreens/homepage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/startScreens/loginPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/startScreens/loginPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/utils/customUsage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/utils/customUsage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/utils/horizontalMusicList.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/utils/horizontalMusicList.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_now_music/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/otherScreens/searchDelegate.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/otherScreens/searchDelegate.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e_now_music/lib/src/startScreens/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/e_now_music/lib/src/startScreens/register.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +24,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../insurerity-QrCode" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -73,10 +56,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="438" y="194" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1635548994261" />
-    <state x="108" y="112" width="1200" height="584" key="AVDManager" timestamp="1635868495263">
+    <state x="108" y="112" width="1200" height="584" key="AVDManager" timestamp="1636683962065">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="108" y="112" width="1200" height="584" key="AVDManager/0.0.1536.824@0.0.1536.824" timestamp="1635868495263" />
+    <state x="108" y="112" width="1200" height="584" key="AVDManager/0.0.1536.824@0.0.1536.824" timestamp="1636683962065" />
+    <state x="489" y="159" key="FileChooserDialogImpl" timestamp="1636753315172">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="489" y="159" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1636753315172" />
     <state x="217" y="49" key="SettingsEditor" timestamp="1635550026895">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

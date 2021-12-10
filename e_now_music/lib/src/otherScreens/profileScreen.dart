@@ -145,6 +145,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
+
+          
           Expanded(
             child: SingleChildScrollView(
               child: GridView.builder(
