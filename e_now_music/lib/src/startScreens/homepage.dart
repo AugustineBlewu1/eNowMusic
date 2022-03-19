@@ -152,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                             //Search Box
                             SizedBox(
                               height: 32.0,
-                              width: 278,
+                              width: 250,
                               child: TextField(
                                 onTap: () {
                                   showSearch(
@@ -269,16 +269,18 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                         ),
                         SizedBox(
                           height: 45.0,
-                          width: 338.0,
+                          width: MediaQuery.of(context).size.width,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(15.0),
                                 child: CachedNetworkImage(
                                   imageUrl:
-                                      musicModel!.first.imageUrl.toString(),
+                                      musicModel!.last.imageUrl.toString(),
                                   fit: BoxFit.fitWidth,
+                                  height: 45,
+                                  width: 150 ,
                                   progressIndicatorBuilder:
                                       (context, url, downloadProgress) =>
                                           SizedBox(
@@ -291,39 +293,33 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                width: 15.0,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    musicModel!.first.title.toString(),
-                                    style: context.textTheme.caption!.copyWith(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                    height: 3.0,
-                                  ),
-                                  Text(musicModel!.first.title.toString(),
-                                      style: context.textTheme.caption!
-                                          .copyWith(
-                                              fontSize: 14.0,
-                                              color:
-                                                  eNowColor.withOpacity(0.5))),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 15.0,
-                              ),
+                              
+                              // Column(
+                              //   children: [
+                              //     Text(
+                              //       musicModel!.first.title.toString(),
+                              //       style: context.textTheme.caption!.copyWith(
+                              //           fontSize: 14.0,
+                              //           fontWeight: FontWeight.bold),
+                              //     ),
+                              //     SizedBox(
+                              //       height: 3.0,
+                              //     ),
+                              //     Text(musicModel!.first.title.toString(),
+                              //         style: context.textTheme.caption!
+                              //             .copyWith(
+                              //                 fontSize: 14.0,
+                              //                 color:
+                              //                     eNowColor.withOpacity(0.5))),
+                              //   ],
+                              // ),
+                              
                               StreamBuilder<PlayerState?>(
                                   stream: _audiohere.playerStateStream,
                                   builder: (_, snapshot) {
                                     if (snapshot.hasData)
                                       return audioStateWidget(snapshot.data!);
-                                    return SizedBox.shrink();
+                                    return SizedBox();
                                   }),
                             ],
                           ),
